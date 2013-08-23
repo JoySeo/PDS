@@ -29,7 +29,7 @@ function fn_setEvent(){
 	
 	$("#btn_regist").click(function(){
 		//신규등록 페이지로 이동
-		alert("신규등록 페이지 이동");
+		document.location.href="regDetail.do?flag=C";
 	});
 	
 	$("body").delegate("#resultTableTr", "mouseenter", function(){
@@ -82,10 +82,10 @@ function fn_setResult(data){
 		html += '<tr id="resultTableTr" style="cursor:pointer" onclick="fn_viewDetail(\''+data.pdsList[i].SEQ+'\')">';
 		html += '<td>' + data.pdsList[i].NO + '</td>';
 		html += '<td>' + data.pdsList[i].BIZ_CODE + '</td>';
-		html += '<td style="text-align:left;">' + data.pdsList[i].BIZ_ITEM + '</td>';
-		html += '<td style="text-align:left;">' + data.pdsList[i].TARGET_RESULT + '</td>';
-		html += '<td style="text-align:right;">' + data.pdsList[i].PROG_RATE + '</td>';
-		html += '<td style="text-align:left;">' + data.pdsList[i].PLAN_DO + '</td>';
+		html += '<td style="text-align:left;"><pre>' + data.pdsList[i].BIZ_ITEM + '</pre></td>';
+		html += '<td style="text-align:left;"><pre>' + data.pdsList[i].TARGET_RESULT + '</pre></td>';
+		html += '<td style="text-align:right;">' + data.pdsList[i].PROG_RATE + '</pre></td>';
+		html += '<td style="text-align:left;"><pre>' + data.pdsList[i].PLAN_DO + '</pre></td>';
 		html += '<td>' + data.pdsList[i].SCHEDULE_DT + '</td>';
 		html += '<td>' + data.pdsList[i].REG_DT + '</td>';
 		html += '<td>' + data.pdsList[i].REG_USER + '</td>';

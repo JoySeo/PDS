@@ -42,6 +42,13 @@ public class PdsListController {
 			return modelMap;
 		}
 		
+		if(period == null || period == ""){
+			period = "1";
+		}
+		if(page == null || page == ""){
+			page = "1";
+		}
+		
 		try {
 			//리스트 가져오는 서비스 호출
 			modelMap.put("pdsList", pdsListService.getList(userId, period, page) );

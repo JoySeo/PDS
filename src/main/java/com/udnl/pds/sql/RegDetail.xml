@@ -27,4 +27,57 @@
 		  FROM PDS_CONTENT 
 		 WHERE SEQ=#seq#	
 	</select>
+	
+	<insert id="regDetail.savePds" parameterClass="com.udnl.pds.dto.PdsContent">
+		MERGE INTO PDS_CONTENT
+		USING DUAL
+		ON (seq = #SEQ#)
+		WHEN MATCHED THEN
+		UPDATE SET
+			BIZ_CODE        = UPPER(#BIZ_CODE#)
+			,BIZ_ITEM       = #BIZ_ITEM#
+			,TARGET_RESULT  = #TARGET_RESULT#
+			,TARGET_TIME    = #TARGET_TIME#
+			,REAL_TIME      = #REAL_TIME#
+			,PROG_RATE      = #PROG_RATE#
+			,PLAN_DO        = #PLAN_DO#
+			,GAB_ANAL       = #GAB_ANAL#
+			,SCHEDULE_DT    = #SCHEDULE_DT#
+			,UPDATE_DT      = SYSDATE
+			,UPDATE_USER    = #UPDATE_USER#
+		WHEN NOT MATCHED THEN
+		INSERT (SEQ
+				,BIZ_CODE
+				,BIZ_ITEM
+				,TARGET_RESULT
+				,TARGET_TIME
+				,REAL_TIME
+				,PROG_RATE
+				,PLAN_DO
+				,GAB_ANAL
+				,SCHEDULE_DT
+				,REG_DT
+				,REG_USER
+				,UPDATE_DT
+				,UPDATE_USER)
+		VALUES (SEQ_PDS_CONTENT.NEXTVAL
+				,UPPER(#BIZ_CODE#)
+				,#BIZ_ITEM#
+				,#TARGET_RESULT#
+				,#TARGET_TIME#
+				,#REAL_TIME#
+				,#PROG_RATE#
+				,#PLAN_DO#
+				,#GAB_ANAL#
+				,#SCHEDULE_DT#
+				,SYSDATE
+				,#UPDATE_USER#
+				,SYSDATE
+				,#UPDATE_USER#)	
+	</insert>
+	
+	<delete id="regDetail.deletePds">
+		DELETE PDS_CONTENT
+		WHERE SEQ=#SEQ#		
+	</delete>
 </sqlMap>

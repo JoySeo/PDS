@@ -1,5 +1,8 @@
 package com.udnl.pds.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.udnl.pds.dto.PdsContent;
 import com.udnl.pds.service.RegDetailService;
 
 /**
@@ -39,6 +44,7 @@ public class RegDetailController {
 		String strUserNm = (String)session.getAttribute("userNm");
 		model.addAttribute("userNm",strUserNm);
 		model.addAttribute("flag",flag);
+		model.addAttribute("seq",seq);
 		
 		//flag R: 상세보기, C: 신규등록, U: 수정
 		if( flag.equals("R") ){
@@ -48,5 +54,67 @@ public class RegDetailController {
 		}
 		
 		return "reg_detail";
+	}
+	
+	@RequestMapping(value = "/viewList.do", method = RequestMethod.GET)
+	public String viewList(Model model, HttpSession session) {
+		model.addAttribute("userNm", session.getAttribute("userNm") );
+		return "pds_list";
+	}
+	
+	@RequestMapping(value = "/save.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> save(Model model, HttpSession session, PdsContent pdsContent) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		String userId = (String)session.getAttribute("userId");
+		if(userId == null || userId == ""){
+			modelMap.put("errcode", 2);
+			modelMap.put("msg", "정상적인 접근이 아닙니다.");
+			return modelMap;
+		}else{
+			pdsContent.setUPDATE_USER(userId);
+		}
+		
+		try {
+			regDetailService.save(pdsContent);
+			modelMap.put("errcode", 0);
+			modelMap.put("msg", "저장 완료 되었습니다.");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			modelMap.put("errcode", 1);
+			modelMap.put("msg", "시스템 오류로 저장 실패 되었습니다.\n관리자에 문의하세요.");
+		}
+		
+		return modelMap;
+	}
+	
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> delete(Model model, HttpSession session, PdsContent pdsContent) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		String userId = (String)session.getAttribute("userId");
+		if(userId == null || userId == ""){
+			modelMap.put("errcode", 2);
+			modelMap.put("msg", "정상적인 접근이 아닙니다.");
+			return modelMap;
+		}else{
+			pdsContent.setUPDATE_USER(userId);
+		}
+		
+		try {
+			regDetailService.delete(pdsContent);
+			modelMap.put("errcode", 0);
+			modelMap.put("msg", "삭제 완료 되었습니다.");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			modelMap.put("errcode", 1);
+			modelMap.put("msg", "시스템 오류로 삭제 실패 되었습니다.\n관리자에 문의하세요.");
+		}
+		
+		return modelMap;
 	}
 }
