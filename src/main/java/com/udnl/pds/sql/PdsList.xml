@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="pdsList">
+
+	<!-- resultClass, parameterClass에 매번 전체 클래스명의 반복입력을 피하기 위해서 Alias를 미리 만들어 
+		놓는다. -->
+	<select id="pdsList.selectList" parameterClass="hashmap" resultClass="hashmap">
+		WITH T AS 
+		       (SELECT ROWNUM NO , 
+		              SEQ , 
+		              BIZ_CODE , 
+		              BIZ_ITEM , 
+		              TARGET_RESULT , 
+		              TARGET_TIME , 
+		              REAL_TIME , 
+		              PROG_RATE , 
+		              PLAN_DO , 
+		              GAB_ANAL , 
+		              SCHEDULE_DT , 
+		              REG_DT , 
+		              (SELECT NAME FROM PDS_USER WHERE ID=REG_USER) REG_USER , 
+		              UPDATE_DT , 
+		              UPDATE_USER 
+		         FROM PDS_CONTENT 
+		        WHERE REG_USER=#userId# 
+		              AND REG_DT > SYSDATE-DECODE(#period#,'1',7,'2',30,'3',365) 
+		     ORDER BY REG_DT DESC
+		       )  
+		SELECT A.TOT_CNT, 
+		       T.* 
+		  FROM T, 
+		       (SELECT COUNT(*) TOT_CNT 
+		         FROM T
+		       ) A 
+		 WHERE T.NO <![CDATA[ > ]]> ($page$-1)*10
+		       AND T.NO <![CDATA[ <= ]]> $page$*10  		
+	</select>
+</sqlMap>

@@ -21,6 +21,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- jsonView설정 -->
+	<beans:bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:bean
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+				<beans:bean
+					class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	<!-- /jsonView설정 -->
+	
 	<context:component-scan base-package="com.udnl.pds" />
 	
 	

@@ -34,6 +34,11 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	public String loginGet(User user, Model model, HttpSession session) {
+		return login(user,model,session);
+	}
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(User user, Model model, HttpSession session) {
 		logger.info("user="+user);

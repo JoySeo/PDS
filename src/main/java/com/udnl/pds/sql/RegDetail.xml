@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="regDetail">
+
+	<!-- resultClass, parameterClass에 매번 전체 클래스명의 반복입력을 피하기 위해서 Alias를 미리 만들어 
+		놓는다. -->
+	<select id="regDetail.selectPds" parameterClass="string" resultClass="hashmap">
+		SELECT SEQ , 
+		       BIZ_CODE , 
+		       BIZ_ITEM , 
+		       TARGET_RESULT , 
+		       TARGET_TIME , 
+		       REAL_TIME , 
+		       PROG_RATE , 
+		       PLAN_DO , 
+		       GAB_ANAL , 
+		       SCHEDULE_DT , 
+		       REG_DT , 
+		       (SELECT NAME 
+		         FROM PDS_USER 
+		        WHERE id=REG_USER
+		       ) REG_USER , 
+		       UPDATE_DT , 
+		       UPDATE_USER 
+		  FROM PDS_CONTENT 
+		 WHERE SEQ=#seq#	
+	</select>
+</sqlMap>
