@@ -8,25 +8,26 @@
 		놓는다. -->
 	<select id="pdsList.selectList" parameterClass="hashmap" resultClass="hashmap">
 		WITH T AS 
-		       (SELECT ROWNUM NO , 
-		              SEQ , 
-		              BIZ_CODE , 
-		              BIZ_ITEM , 
-		              TARGET_RESULT , 
-		              TARGET_TIME , 
-		              REAL_TIME , 
-		              PROG_RATE , 
-		              PLAN_DO , 
-		              GAB_ANAL , 
-		              SCHEDULE_DT , 
-		              REG_DT , 
-		              (SELECT NAME FROM PDS_USER WHERE ID=REG_USER) REG_USER , 
-		              UPDATE_DT , 
-		              UPDATE_USER 
-		         FROM PDS_CONTENT 
-		        WHERE REG_USER=#userId# 
-		              AND REG_DT > SYSDATE-DECODE(#period#,'1',7,'2',30,'3',365) 
-		     ORDER BY REG_DT DESC
+		       (SELECT ROWNUM NO , AA.* 
+		              FROM (SELECT SEQ , 
+					              BIZ_CODE , 
+					              BIZ_ITEM , 
+					              TARGET_RESULT , 
+					              TARGET_TIME , 
+					              REAL_TIME , 
+					              PROG_RATE , 
+					              PLAN_DO , 
+					              GAB_ANAL , 
+					              SCHEDULE_DT , 
+					              REG_DT , 
+					              (SELECT NAME FROM PDS_USER WHERE ID=REG_USER) REG_USER , 
+					              UPDATE_DT , 
+					              UPDATE_USER 
+					         FROM PDS_CONTENT 
+					        WHERE REG_USER=#userId# 
+					              AND REG_DT > SYSDATE-DECODE(#period#,'1',7,'2',30,'3',365) 
+					     ORDER BY REG_DT DESC
+				     ) AA
 		       )  
 		SELECT A.TOT_CNT, 
 		       T.* 

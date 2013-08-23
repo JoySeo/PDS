@@ -3,13 +3,15 @@
 <%@ page session="false" %>
 <html>
 <head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 	<title>UDNL PDS</title>
 <style type="text/css">
-.tblType01 { width:100%; }
-.tblType01 th { width:115px; border-bottom:1px solid #e2e2e2; padding:11px 0 10px 15px; text-align:left; background:#f6f6f6;}
-.tblType01 td { width:600px; padding:10px 0 10px 10px; border-bottom:1px solid #e2e2e2;}
-.tblType01 td.w210 { width:210px; padding:10px 0 10px 10px; border-bottom:1px solid #e2e2e2;}
+.tblType01 { width:100%; font-size:12px;}
+.tblType01 th { width:150px; border-bottom:1px solid #e2e2e2; padding:11px 0px 10px 5px; text-align:left; background:#f6f6f6;}
+.tblType01 td { width:600px; padding:10px; border-bottom:1px solid #e2e2e2;}
 .tblType01 td label {margin-right:15px;}
+textarea {width:100%;}
+
 </style>	
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -105,9 +107,10 @@ function fn_deletePds(){
 </script>	
 </head>
 <body>
-<p>UDNL PDS</p>
-<p>${userNm}님</p>
-상세보기 및 등록/수정
+<div style="background-color:#e8e8ff; margin-bottom:15px;">
+<span style="font-size:30px; margin:10px">UDNL PDS</span>
+<span>${userNm} 님</span>
+</div>
 <div>
 <form>
 <table class="tblType01" >
@@ -120,58 +123,58 @@ function fn_deletePds(){
 	<tr>
 		<th>업무코드</th>
 		<td>
-			<input type="text" id="" name="BIZ_CODE" value="${result[0].BIZ_CODE}" maxlength="4" style="text-transform:uppercase;">
+			<input type="text" id="" name="BIZ_CODE" value="${result[0].BIZ_CODE}" maxlength="4" style="text-transform:uppercase; ime-mode:inactive; width:50px;">
 		</td>
 	</tr>
 	<tr>
 		<th>업무항목</th>
 		<td>
-			<textarea id="" name="BIZ_ITEM" rows="" cols="">${result[0].BIZ_ITEM}</textarea>
+			<textarea id="" name="BIZ_ITEM" rows="4" >${result[0].BIZ_ITEM}</textarea>
 		</td>
 	</tr>
 	<tr>
 		<th>목표결과</th>
 		<td>
-			<textarea id="" name="TARGET_RESULT" rows="" cols="">${result[0].TARGET_RESULT}</textarea>
+			<textarea id="" name="TARGET_RESULT" rows="4" >${result[0].TARGET_RESULT}</textarea>
 		</td>
 	</tr>
 	<tr>
 		<th>목표투입시간</th>
 		<td>
-			<input type="text" id="" name="TARGET_TIME" value="${result[0].TARGET_TIME}">H 
+			<input type="text" id="" name="TARGET_TIME" value="${result[0].TARGET_TIME}" maxlength="2" style="width:50px; text-align:right;">H 
 		</td>
 	</tr>
 	<tr>
 		<th>실제투입시간</th>
 		<td>
-			<input type="text" id="" name="REAL_TIME" value="${result[0].REAL_TIME}">H
+			<input type="text" id="" name="REAL_TIME" value="${result[0].REAL_TIME}" maxlength="2" style="width:50px; text-align:right;">H
 		</td>
 	</tr>
 	<tr>
 		<th>진행률</th>
 		<td>
-			<input type="text" id="" name="PROG_RATE" value="${result[0].PROG_RATE}">%
+			<input type="text" id="" name="PROG_RATE" value="${result[0].PROG_RATE}" maxlength="3" style="width:50px; text-align:right;">%
 		</td>
 	</tr>
 	<tr>
 		<th>계획 및 실행</th>
 		<td>
-			<textarea id="" name="PLAN_DO" rows="" cols="">${result[0].PLAN_DO}</textarea>
+			<textarea id="" name="PLAN_DO" rows="4" >${result[0].PLAN_DO}</textarea>
         </td>
 	</tr>
 	<tr>
 		<th>Gab분석 및 향후진행</th>
 		<td>
-			<textarea id="" name="GAB_ANAL" rows="" cols="">${result[0].GAB_ANAL}</textarea>
+			<textarea id="" name="GAB_ANAL" rows="4" >${result[0].GAB_ANAL}</textarea>
         </td>
 	</tr>
 </table>
 </form>
 </div>
-<div>
-<input type="button" id="btn_update" value="수정">
-<input type="button" id="btn_save" value="저장">
-<input type="button" id="btn_delete" value="삭제">
+<div style="text-align:right;">
+<input type="button" id="btn_update" value="수정" style="width:70px">
+<input type="button" id="btn_save" value="저장" style="width:70px">
+<input type="button" id="btn_delete" value="삭제" style="width:70px">
 </div>
 </body>
 </html>

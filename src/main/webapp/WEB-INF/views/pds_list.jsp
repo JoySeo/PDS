@@ -3,9 +3,10 @@
 <%@ page session="false" %>
 <html>
 <head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 	<title>UDNL PDS</title>
 <style type="text/css">
-.boardlist { width:100%; }
+.boardlist { width:100%; font-size:12px;}
 .boardlist th { padding:9px 0 7px 0; white-space:nowrap; text-align:center; line-height:normal; background:#f6f6f6; border-bottom:1px solid #ddd; color:#666;}
 .boardlist ul { width:10px; display:inline-block; vertical-align:middle;}
 .boardlist ul li {width:10px; line-height:0; margin-bottom:2px;}
@@ -45,7 +46,7 @@ function fn_setEvent(){
 	});
 	
 	$("body").delegate("#resultTableTr", "mouseup", function(){
-		$(this).css("background-color","darkgray");
+		$(this).css("background-color","");
 	});
 }
 
@@ -144,28 +145,30 @@ function fn_searchPdsPage(page){
 </script>	
 </head>
 <body>
-<p>UDNL PDS</p>
-<p>${userNm}님</p>
+<div style="background-color:#e8e8ff; margin-bottom:15px;">
+<span style="font-size:30px; margin:10px">UDNL PDS</span>
+<span>${userNm} 님</span>
+</div>
 <div>
-	<select id="sel_period">
+	<select id="sel_period" style="width:80px; margin-bottom:0 auto;">
 		<option value="1">일주일</option>
 		<option value="2">한달</option>
 		<option value="3">일년</option>
 	</select>
-	<input type="button" id="btn_regist" value="신규등록">
+	<input type="button" id="btn_regist" value="신규등록" style="position:absolute; right:10px; width:90px; ">
 </div>
-<div>
+<div style="width:100%; overFlow-x : auto;">
 <table class="boardlist" summary="">
 	<colgroup>
+		<col width="30px" />
+		<col width="30px" />
+		<col width="200px" />
+		<col width="200px" />
+		<col width="40px" />
+		<col width="200px" />
 		<col width="50px" />
 		<col width="50px" />
-		<col width="100px" />
-		<col width="100px" />
-		<col width="50px" />
-		<col width="100px" />
-		<col width="70px" />
-		<col width="70px" />
-		<col width="70px" />
+		<col width="40px" />
 	</colgroup>
 	<thead>
 		<tr>

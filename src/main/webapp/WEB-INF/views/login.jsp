@@ -3,6 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 	<title>UDNL PDS</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -44,11 +45,27 @@ function fn_login(){
 </script>	
 </head>
 <body>
-<p>UDNL PDS</p>
+<div style="text-align:center;">
+<p style="font-size:50px;margin:50 0 40 0;background-color:#e8e8ff;">UDNL PDS</p>
 <form id="frm_login" name="frm_login" method="post" action="login.do">
-<span style="width:100px; display:inline-block;">ID</span><input type="text" id="id" name="ID" style="width:100px"><span>@udnl.co.kr</span><br/>
-<span style="width:100px; display:inline-block;">Password</span><input type="password" id="password" name="PASSWORD" style="width:100px">
+<table align="center">
+<tbody><tr>
+	<th style="text-align:left;">ID</th>
+	<td>
+		<input type="text" id="id" name="ID" style="width:100px"><span>@udnl.co.kr</span>
+	</td>
+
+</tr>
+<tr>
+	<th style="text-align:left;">Password</th>
+	<td>
+		<input type="password" id="password" name="PASSWORD" style="width:100px">
+	</td>
+
+</tr>
+</tbody></table>
 </form>
-<input type="button" id="btn_sign" value="Sign In" >
+<input type="button" value="Sign in" id="btn_sign" style="width:274px;height: 40px;">
+<p>copyrightⓒ 2013 All rights reserved by UDNL</p>
 </body>
 </html>
