@@ -48,6 +48,10 @@ function fn_setEvent(){
 	$("body").delegate("#resultTableTr", "mouseup", function(){
 		$(this).css("background-color","");
 	});
+	
+	$("#sp_name").click(function(){
+		document.location.href = "changAcc.do";
+	});
 }
 
 function fn_searchPds(sPeriodVal,page){
@@ -147,7 +151,7 @@ function fn_searchPdsPage(page){
 <body>
 <div style="background-color:#e8e8ff; margin-bottom:15px;">
 <span style="font-size:30px; margin:10px">UDNL PDS</span>
-<span>${userNm} 님</span>
+<span id="sp_name" style="cursor:pointer;" title="비밀번호 변경">${userNm} 님</span>
 </div>
 <div>
 	<select id="sel_period" style="width:80px; margin-bottom:0 auto;">
@@ -190,5 +194,6 @@ function fn_searchPdsPage(page){
 <div>
 <p id="page" style="text-align:center;"></p>
 </div>
+<p style="font-size:12px; text-align:center;">copyrightⓒ 2013 All rights reserved by UDNL</p>
 </body>
 </html>

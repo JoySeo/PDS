@@ -6,6 +6,7 @@
 	<sqlMap resource="com/udnl/pds/sql/Login.xml" />
 	<sqlMap resource="com/udnl/pds/sql/PdsList.xml" />
 	<sqlMap resource="com/udnl/pds/sql/RegDetail.xml" />
+	<sqlMap resource="com/udnl/pds/sql/ChangeAccount.xml" />
 
 </sqlMapConfig>
 

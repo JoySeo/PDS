@@ -33,7 +33,6 @@ public class RegDetailController {
 		
 		//정상적인 사용자인지 체크
 		String userId = (String) session.getAttribute("userId");
-		System.out.println("userId="+userId);
 		
 		if(userId == null || userId == ""){
 			//에러메세지
@@ -50,7 +49,6 @@ public class RegDetailController {
 		if( flag.equals("R") ){
 			//seq에 해당하는 데이터를 가져온다
 			model.addAttribute("result", regDetailService.getPds(seq));
-			System.out.println("model>>"+model);
 		}
 		
 		return "reg_detail";

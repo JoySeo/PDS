@@ -42,7 +42,7 @@
 			,PROG_RATE      = #PROG_RATE#
 			,PLAN_DO        = #PLAN_DO#
 			,GAB_ANAL       = #GAB_ANAL#
-			,SCHEDULE_DT    = #SCHEDULE_DT#
+			,SCHEDULE_DT    = TO_DATE(#SCHEDULE_DT#,'YYYY-MM-DD')
 			,UPDATE_DT      = SYSDATE
 			,UPDATE_USER    = #UPDATE_USER#
 		WHEN NOT MATCHED THEN
@@ -69,7 +69,7 @@
 				,#PROG_RATE#
 				,#PLAN_DO#
 				,#GAB_ANAL#
-				,#SCHEDULE_DT#
+				,TO_DATE(#SCHEDULE_DT#,'YYYY-MM-DD')
 				,SYSDATE
 				,#UPDATE_USER#
 				,SYSDATE

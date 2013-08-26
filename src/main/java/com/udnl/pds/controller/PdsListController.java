@@ -33,7 +33,6 @@ public class PdsListController {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		//정상적인 사용자인지 체크
 		String userId = (String) session.getAttribute("userId");
-		System.out.println("userId="+userId);
 		
 		if(userId == null || userId == ""){
 			//에러메세지
@@ -60,8 +59,6 @@ public class PdsListController {
 			modelMap.put("errmsg", "시스템 에러 입니다.\n관리자에게 문의하세요.");
 		}
 		
-		System.out.println("modelMap>>"+modelMap);
-
 		return modelMap;
 	}
 }

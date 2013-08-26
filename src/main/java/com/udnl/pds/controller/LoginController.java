@@ -41,14 +41,12 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(User user, Model model, HttpSession session) {
-		logger.info("user="+user);
 		
 		//id,pass validation
 		String strId = user.getID();
 		String strPass = user.getPASSWORD();
 		if(strId == null || strId == ""){
 			model.addAttribute("msg", "ID 를 입력해주세요.");
-			System.out.println("model="+model);
 			return "login";
 		}
 		
@@ -60,7 +58,6 @@ public class LoginController {
 		//로그인 서비스 호출
 		String strLogRs = loginService.login(user);
 		//결과를 받아와 성공/실패 에따라 분기
-		System.out.println("strLogRs="+strLogRs);
 		
 		if(strLogRs.equals("-1")){
 			//로그인 실패

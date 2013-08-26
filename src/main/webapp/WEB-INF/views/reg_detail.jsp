@@ -36,6 +36,10 @@ function fn_setEvent(){
 	$("#btn_delete").click(function(){
 		fn_deletePds();
 	});
+	
+	$("#sp_name").click(function(){
+		document.location.href = "changAcc.do";
+	});
 }
 
 function fn_setDisable(sFlag){
@@ -109,7 +113,7 @@ function fn_deletePds(){
 <body>
 <div style="background-color:#e8e8ff; margin-bottom:15px;">
 <span style="font-size:30px; margin:10px">UDNL PDS</span>
-<span>${userNm} 님</span>
+<span id="sp_name" style="cursor:pointer;" title="비밀번호 변경">${userNm} 님</span>
 </div>
 <div>
 <form>
@@ -176,5 +180,6 @@ function fn_deletePds(){
 <input type="button" id="btn_save" value="저장" style="width:70px">
 <input type="button" id="btn_delete" value="삭제" style="width:70px">
 </div>
+<p style="font-size:12px; text-align:center;">copyrightⓒ 2013 All rights reserved by UDNL</p>
 </body>
 </html>

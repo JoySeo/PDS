@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="changeAcc">
+
+	<!-- resultClass, parameterClass에 매번 전체 클래스명의 반복입력을 피하기 위해서 Alias를 미리 만들어 
+		놓는다. -->
+	<select id="changeAcc.selectUser" parameterClass="hashmap" resultClass="string">
+		SELECT COUNT(*) CNT
+		FROM PDS_USER
+		WHERE ID=#userId#
+		AND PASSWORD=#currPass#
+	</select>
+	
+	<update id="changeAcc.updateUser" parameterClass="hashmap">
+		UPDATE PDS_USER
+		SET PASSWORD = #newPass#
+		WHERE ID = #userId#
+	</update>
+	
+</sqlMap>
