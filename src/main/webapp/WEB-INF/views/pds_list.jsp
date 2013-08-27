@@ -15,6 +15,8 @@
 .boardlist td.subject { white-space:normal; text-align:left; }
 .boardlist td.subject a:hover { color:#000; }
 .boardlist td span { padding-right:3px; }
+.arrow {font-size:14px;}
+a {text-decoration:none; color:#444;}
 </style>	
 <script type="text/javascript">
 $(document).ready(function(){
@@ -103,17 +105,17 @@ function fn_setResult(data){
 function fn_setPageing(data,page){
 	//total cnt 로 페이징 넘버를 만든다
 	var sTotalCnt = data.pdsList[0].TOT_CNT;
-	var nTotalPage = parseInt(sTotalCnt/10+1);
+	var nTotalPage = Math.ceil(sTotalCnt/10);
 	var html = "";
 	
 	$("p#page").empty();
 	
 	if(parseInt(page/10) > 0){
-		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+(page-10)+")'>◀◀</a>";
+		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+(page-10)+")' class='arrow'>◀◀</a>";
 	}
 	
 	if(page > 1){
-		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+(page-1)+")'>◀</a>";
+		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+(page-1)+")' class='arrow'>◀</a>";
 	}
 	
 	for(var i=1 ; i<=nTotalPage ; i++){
@@ -123,13 +125,12 @@ function fn_setPageing(data,page){
 			html += "&nbsp;<a href='javascript:fn_searchPdsPage("+i+")'>"+i+"</a>";
 		}
 	}
-	
 	if(page < nTotalPage){
-		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+(page+1)+")'>▶</a>";
+		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+(page+1)+")' class='arrow'>▶</a>";
 	}
 	
 	if(parseInt(page/10) < parseInt(nTotalPage/10)){
-		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+( ( (page+10) > nTotalPage)? nTotalPage : (page+10) )+")'>▶▶</a>";
+		html += "&nbsp;<a href='javascript:fn_searchPdsPage("+( ( (page+10) > nTotalPage)? nTotalPage : (page+10) )+")' class='arrow'>▶▶</a>";
 	}
 	
 	html.replace("&nbsp;","");
