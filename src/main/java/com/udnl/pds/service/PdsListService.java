@@ -13,10 +13,11 @@ public class PdsListService {
 	@Autowired
     private SqlMapClientTemplate sqlMapClientTemplate;
 
-	public Object getList(String userId, String period, String page) {
+	public Object getList(String userId, String strAuth, String period, String page) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("userId", userId);
+		map.put("auth", strAuth );
 		map.put("period", period);
 		map.put("page", page);
 		return sqlMapClientTemplate.queryForList("pdsList.selectList", map);

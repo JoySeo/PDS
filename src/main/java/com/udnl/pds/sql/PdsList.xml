@@ -9,23 +9,28 @@
 	<select id="pdsList.selectList" parameterClass="hashmap" resultClass="hashmap">
 		WITH T AS 
 		       (SELECT ROWNUM NO , AA.* 
-		              FROM (SELECT SEQ , 
-					              BIZ_CODE , 
-					              BIZ_ITEM , 
-					              TARGET_RESULT , 
-					              TARGET_TIME , 
-					              REAL_TIME , 
-					              PROG_RATE , 
-					              PLAN_DO , 
-					              GAB_ANAL , 
-					              SCHEDULE_DT , 
-					              REG_DT , 
-					              (SELECT NAME FROM PDS_USER WHERE ID=REG_USER) REG_USER , 
-					              UPDATE_DT , 
-					              UPDATE_USER 
-					         FROM PDS_CONTENT 
-					        WHERE REG_USER=#userId# 
-					              AND REG_DT > SYSDATE-DECODE(#period#,'1',7,'2',30,'3',365) 
+		              FROM (SELECT AAA.SEQ , 
+					              AAA.BIZ_CODE , 
+					              AAA.BIZ_ITEM , 
+					              AAA.TARGET_RESULT , 
+					              AAA.TARGET_TIME , 
+					              AAA.REAL_TIME , 
+					              AAA.PROG_RATE , 
+					              AAA.PLAN_DO , 
+					              AAA.GAB_ANAL , 
+					              AAA.SCHEDULE_DT , 
+					              AAA.REG_DT , 
+					              (SELECT NAME FROM PDS_USER WHERE ID=AAA.REG_USER ) REG_USER , 
+					              AAA.UPDATE_DT , 
+					              AAA.UPDATE_USER 
+					         FROM PDS_CONTENT AAA
+					        WHERE 1=1
+					        <isNotEqual property="auth" compareValue="SYSADMIN">
+					        <isNotEqual property="auth" compareValue="ADMIN">
+					        AND AAA.REG_USER=#userId# 
+					        </isNotEqual>
+					        </isNotEqual>
+					        AND AAA.REG_DT > SYSDATE-DECODE(#period#,'1',7,'2',30,'3',365) 
 					     ORDER BY REG_DT DESC
 				     ) AA
 		       )  

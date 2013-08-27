@@ -4,17 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Service;
 
-import com.udnl.pds.dto.User;
-
 @Service
-public class LoginService {
+public class AdminService {
 	
 	@Autowired
     private SqlMapClientTemplate sqlMapClientTemplate;
 
-	public User login(User user) {
+	public String getAuth(String userId) {
 		// TODO Auto-generated method stub
-		return (User) sqlMapClientTemplate.queryForObject("login.selectUser", user);
+		return (String)sqlMapClientTemplate.queryForObject("admin.selectAuth", userId);
 	}
+
 
 }

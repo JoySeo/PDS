@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@include file="header.jsp"%>
 <html>
 <head>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
@@ -13,7 +14,6 @@
 textarea {width:100%;}
 
 </style>	
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	fn_initPage();
@@ -111,10 +111,6 @@ function fn_deletePds(){
 </script>	
 </head>
 <body>
-<div style="background-color:#e8e8ff; margin-bottom:15px;">
-<span style="font-size:30px; margin:10px">UDNL PDS</span>
-<span id="sp_name" style="cursor:pointer;" title="비밀번호 변경">${userNm} 님</span>
-</div>
 <div>
 <form>
 <table class="tblType01" >
@@ -180,6 +176,6 @@ function fn_deletePds(){
 <input type="button" id="btn_save" value="저장" style="width:70px">
 <input type="button" id="btn_delete" value="삭제" style="width:70px">
 </div>
-<p style="font-size:12px; text-align:center;">copyrightⓒ 2013 All rights reserved by UDNL</p>
+<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -66,6 +66,6 @@ function fn_login(){
 </tbody></table>
 </form>
 <input type="button" value="Sign in" id="btn_sign" style="width:274px;height: 40px;">
-<p style="font-size:12px;">copyrightⓒ 2013 All rights reserved by UDNL</p>
+<%@include file="footer.jsp"%>
 </body>
 </html>

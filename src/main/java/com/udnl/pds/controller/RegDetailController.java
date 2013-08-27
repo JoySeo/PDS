@@ -44,6 +44,8 @@ public class RegDetailController {
 		model.addAttribute("userNm",strUserNm);
 		model.addAttribute("flag",flag);
 		model.addAttribute("seq",seq);
+		model.addAttribute("auth",session.getAttribute("auth"));
+		System.out.println("model>>>>>"+model);
 		
 		//flag R: 상세보기, C: 신규등록, U: 수정
 		if( flag.equals("R") ){
@@ -57,6 +59,7 @@ public class RegDetailController {
 	@RequestMapping(value = "/viewList.do", method = RequestMethod.GET)
 	public String viewList(Model model, HttpSession session) {
 		model.addAttribute("userNm", session.getAttribute("userNm") );
+		model.addAttribute("auth",session.getAttribute("auth"));
 		return "pds_list";
 	}
 	

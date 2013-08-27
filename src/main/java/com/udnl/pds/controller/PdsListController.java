@@ -32,7 +32,10 @@ public class PdsListController {
 	public Map<String, Object> getList(Model model, HttpSession session, String period, String page) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		//정상적인 사용자인지 체크
+		System.out.println("=======getList start=======");
 		String userId = (String) session.getAttribute("userId");
+		String strAuth = (String) session.getAttribute("auth");
+		System.out.println("strAuth>>>>"+strAuth);
 		
 		if(userId == null || userId == ""){
 			//에러메세지
@@ -50,7 +53,7 @@ public class PdsListController {
 		
 		try {
 			//리스트 가져오는 서비스 호출
-			modelMap.put("pdsList", pdsListService.getList(userId, period, page) );
+			modelMap.put("pdsList", pdsListService.getList(userId, strAuth, period, page) );
 			modelMap.put("errcode", 0);
 		} catch (Exception e) {
 			// TODO: handle exception

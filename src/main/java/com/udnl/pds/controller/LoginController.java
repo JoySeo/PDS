@@ -56,10 +56,10 @@ public class LoginController {
 		}
 
 		//로그인 서비스 호출
-		String strLogRs = loginService.login(user);
+		User reUser = loginService.login(user);
 		//결과를 받아와 성공/실패 에따라 분기
-		
-		if(strLogRs.equals("-1")){
+		String strUserNm = reUser.getNAME(); 
+		if(reUser.getNAME().equals("-1")){
 			//로그인 실패
 			//실패시 에러페세지 날림
 			model.addAttribute("msg", "ID 또는 Password 가 맞지 않습니다.");
@@ -67,9 +67,13 @@ public class LoginController {
 		}else{
 			//로그인 성공
 			//성공시 pds 목록 화면이동
+			String strAuth = reUser.getAUTH();
 			session.setAttribute("userId", strId);
-			session.setAttribute("userNm", strLogRs);
-			model.addAttribute("userNm", strLogRs);
+			session.setAttribute("userNm", strUserNm);
+			session.setAttribute("auth", strAuth);
+			model.addAttribute("auth", strAuth);
+			model.addAttribute("userNm", strUserNm);
+			System.out.println("login controller strAuth>>>>>>"+strAuth);
 			return "pds_list";
 		}
 	}

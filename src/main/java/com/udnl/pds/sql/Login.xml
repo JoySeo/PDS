@@ -7,10 +7,28 @@
 	<!-- resultClass, parameterClass에 매번 전체 클래스명의 반복입력을 피하기 위해서 Alias를 미리 만들어 
 		놓는다. -->
 	<typeAlias alias="User" type="com.udnl.pds.dto.User" />
-	<select id="login.selectUser" parameterClass="User" resultClass="java.lang.String">
+	<!-- <select id="login.selectUser" parameterClass="User" resultClass="java.lang.String">
 		SELECT NVL(MAX(NAME),-1) NAME
 		FROM PDS_USER
 		WHERE ID=#ID#
 		AND PASSWORD=#PASSWORD#
+	</select> -->
+	
+	<select id="login.selectUser" parameterClass="User" resultClass="User">
+		SELECT NAME, 
+		       AUTH 
+		  FROM PDS_USER 
+		 WHERE ID=#ID# 
+		       AND PASSWORD=#PASSWORD# 
+		    UNION ALL 
+		SELECT '-1',
+		       '-1' 
+		  FROM DUAL 
+		 WHERE (SELECT NAME 
+		         FROM PDS_USER 
+		        WHERE ID=#ID# 
+		              AND PASSWORD=#PASSWORD#
+		       ) IS NULL
 	</select>
+	
 </sqlMap>

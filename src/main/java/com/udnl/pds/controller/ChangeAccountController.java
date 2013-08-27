@@ -41,6 +41,7 @@ public class ChangeAccountController {
 		
 		String strUserNm = (String)session.getAttribute("userNm");
 		model.addAttribute("userNm",strUserNm);
+		model.addAttribute("auth",session.getAttribute("auth"));
 		
 		return "change_account";
 	}

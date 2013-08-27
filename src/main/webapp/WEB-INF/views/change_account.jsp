@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@include file="header.jsp"%>
 <html>
 <head>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
@@ -10,7 +11,6 @@
 th{text-align:left;}
 
 </style>	
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	fn_initPage();
@@ -82,10 +82,6 @@ function fn_validation(){
 </script>	
 </head>
 <body>
-<div style="background-color:#e8e8ff; margin-bottom:15px;">
-<span style="font-size:30px; margin:10px">UDNL PDS</span>
-<span >${userNm} 님</span>
-</div>
 <div style="margin-bottom:10px;">
 <span style="font-size: 18px;font-weight:bold;">&gt;비밀번호 변경</span>
 </div>
@@ -116,6 +112,6 @@ function fn_validation(){
 <div>
 <input type="button" id="btn_change" value="변경" style="width:70px;height: 30px;">
 </div>
-<p style="font-size:12px; ">copyrightⓒ 2013 All rights reserved by UDNL</p>
+<%@include file="footer.jsp"%>
 </body>
 </html>
