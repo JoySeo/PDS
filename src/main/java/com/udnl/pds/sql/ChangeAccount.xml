@@ -16,6 +16,8 @@
 	<update id="changeAcc.updateUser" parameterClass="hashmap">
 		UPDATE PDS_USER
 		SET PASSWORD = #newPass#
+			,UPDATE_USER = #userId#
+			,UPDATE_DT = SYSDATE
 		WHERE ID = #userId#
 	</update>
 	

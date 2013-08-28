@@ -1,5 +1,8 @@
 package com.udnl.pds.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.udnl.pds.dto.User;
 import com.udnl.pds.service.AdminService;
 
 /**
@@ -42,5 +47,49 @@ public class AdminController {
 		return "admin";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/getAuth.do", method = RequestMethod.GET)
+	public Map<String,Object> getAuth() {
+		Map<String,Object> hm = new HashMap<String,Object>();
+		hm.put("list", adminService.getAuthList() );
+		return hm;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/createUser.do", method = RequestMethod.POST)
+	public Map<String,Object> createUser(User user, HttpSession session) {
+		Map<String,Object> hm = new HashMap<String,Object>();
+		String userId = (String) session.getAttribute("userId");
+		
+		if(userId == null || userId == ""){
+			//에러메세지
+			hm.put("errcode", 3);
+			hm.put("errmsg", "정상적인 접근이 아닙니다.");
+			return hm;
+		}
+		
+		try {
+			//같은 아이디가 있는지 확인
+			String strId = adminService.getUserId(user);
+			
+			if(strId == null || strId == ""){
+				user.setREG_USER(userId);
+				adminService.createUser(user);
+				hm.put("errcode",  0);
+				hm.put("msg",  "신규 사용자가 추가 되었습니다.");
+			}else{
+				hm.put("errcode",  2);
+				hm.put("msg",  "동일한 ID가 존재합니다.");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			hm.put("errcode",  1);
+			hm.put("msg",  "시스템 오류로 실패하였습니다.\n관리자에 문의하세요.");
+		}
+		
+		return hm;
+	}
 	
 }

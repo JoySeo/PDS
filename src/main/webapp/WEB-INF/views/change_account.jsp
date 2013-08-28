@@ -8,7 +8,11 @@
 	<title>UDNL PDS</title>
 <style type="text/css">
 
-th{text-align:left;}
+dt,dd{display:inline-block;}
+dt{width:140px;}
+dl{margin:10px 0 10px 0;}
+dd{margin-left:0}
+fieldset input{width:120px;}
 
 </style>	
 <script type="text/javascript">
@@ -82,31 +86,23 @@ function fn_validation(){
 </script>	
 </head>
 <body>
-<div style="margin-bottom:10px;">
-<span style="font-size: 18px;font-weight:bold;">&gt;비밀번호 변경</span>
-</div>
 <div>
 <form>
-<table>
-	<tr>
-		<th>현재 비밀번호</th>
-		<td>
-			<input type="password" id="currPass" name="currPass" value="">
-		</td>
-	</tr>
-	<tr>
-		<th>신규 비밀번호</th>
-		<td>
-			<input type="password" id="newPass" name="newPass" value="">
-		</td>
-	</tr>
-	<tr>
-		<th>신규 비밀번호 확인</th>
-		<td>
-			<input type="password" id="newPassOk" name="newPassOk" value="">
-		</td>
-	</tr>
-</table>
+<fieldset>
+<legend>비밀번호 변경</legend>
+	<dl>
+		<dt>현재 비밀번호</dt>
+		<dd><input type="password" id="currPass" name="currPass" value=""></dd>
+	</dl>
+	<dl>
+		<dt>신규 비밀번호</dt>
+		<dd><input type="password" id="newPass" name="newPass" value=""></dd>
+	</dl>
+	<dl>
+		<dt>신규 비밀번호 확인</dt>
+		<dd><input type="password" id="newPassOk" name="newPassOk" value=""></dd>
+	</dl>
+</fieldset>
 </form>
 </div>
 <div>

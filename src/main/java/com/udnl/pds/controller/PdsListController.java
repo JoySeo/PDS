@@ -32,10 +32,8 @@ public class PdsListController {
 	public Map<String, Object> getList(Model model, HttpSession session, String period, String page) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		//정상적인 사용자인지 체크
-		System.out.println("=======getList start=======");
 		String userId = (String) session.getAttribute("userId");
 		String strAuth = (String) session.getAttribute("auth");
-		System.out.println("strAuth>>>>"+strAuth);
 		
 		if(userId == null || userId == ""){
 			//에러메세지

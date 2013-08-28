@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap >
+
+	<!-- resultClass, parameterClass에 매번 전체 클래스명의 반복입력을 피하기 위해서 Alias를 미리 만들어 
+		놓는다. -->
+	<typeAlias alias="User" type="com.udnl.pds.dto.User" />
+	
+	<select id="admin.selectAuthList" resultClass="hashmap">
+		SELECT AUTH_ID, AUTH_NM 
+		FROM AUTH_GROUP
+	</select>
+	
+	<select id="admin.selectUserId" resultClass="string">
+		SELECT ID
+		FROM PDS_USER
+		WHERE ID=#ID#	
+	</select>	
+	
+	<insert id="admin.insertUser" parameterClass="User">
+		INSERT INTO PDS_USER(
+			ID
+			,NAME
+			,PASSWORD
+			,EMAIL
+			,AUTH
+			,REG_USER
+			,REG_DT
+			,UPDATE_USER
+			,UPDATE_DT
+		) VALUES(
+			#ID#
+			,#NAME#
+			,#ID#||'123'
+			,#ID#||'@udnl.co.kr'
+			,#AUTH#
+			,#REG_USER#
+			,sysdate
+			,#REG_USER#
+			,sysdate
+		)	
+	</insert>
+</sqlMap>
