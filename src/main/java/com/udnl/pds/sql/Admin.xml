@@ -42,4 +42,29 @@
 			,sysdate
 		)	
 	</insert>
+	
+	<select id="admin.selectUserList" resultClass="hashmap">
+		SELECT ID, NAME||'('||ID||')' NAME, AUTH
+		FROM PDS_USER
+		WHERE ID<![CDATA[ <> ]]>'sysadmin'
+		ORDER BY NAME
+	</select>
+	
+	<update id="admin.updatePass" parameterClass="hashmap">
+		UPDATE PDS_USER
+		SET PASSWORD = #userId#||'123',
+		UPDATE_USER = #sId#,
+		UPDATE_DT = SYSDATE
+		WHERE ID=#userId#
+	</update>
+	
+	<update id="admin.updateUser" parameterClass="User">
+		UPDATE PDS_USER
+		SET NAME=#NAME#,
+		AUTH=#AUTH#,
+		UPDATE_USER = #UPDATE_USER#,
+		UPDATE_DT = SYSDATE
+		WHERE ID=#ID#
+	</update>
+	
 </sqlMap>

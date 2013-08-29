@@ -42,6 +42,10 @@ function fn_changePass(){
 		return;
 	}
 	
+	if( !confirm("비밀번호를 변경 하시겠습니까?") ){
+		return;
+	}
+	
 	$.post("changePass.do", $("form").serialize(),
 			function(data){
 				console.log(data);
