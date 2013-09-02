@@ -159,4 +159,32 @@ public class AdminController {
 		return hm;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/deleteUser.do", method = RequestMethod.POST)
+	public Map<String,Object> deleteUser(User user, HttpSession session) {
+		Map<String,Object> hm = new HashMap<String,Object>();
+		String sId = (String) session.getAttribute("userId");
+		
+		if(sId == null || sId == ""){
+			//에러메세지
+			hm.put("errcode", 3);
+			hm.put("msg", "정상적인 접근이 아닙니다.");
+			return hm;
+		}
+		
+		try {
+			adminService.deleteUser(user);
+			hm.put("errcode",  0);
+			hm.put("msg",  "사용자가 삭제 되었습니다.");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			hm.put("errcode",  1);
+			hm.put("msg",  "시스템 오류로 실패하였습니다.\n관리자에 문의하세요.");
+		}
+		
+		return hm;
+	}
+	
 }

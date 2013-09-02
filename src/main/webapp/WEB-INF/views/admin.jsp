@@ -59,6 +59,10 @@ function fn_setEvent(){
 	$("#btn_mod").click(function(){
 		fn_modifyUser();
 	});
+	
+	$("#btn_del").click(function(){
+		fn_deleteUser();
+	});
 }
 
 function fn_setAuthList(){
@@ -196,6 +200,33 @@ function fn_modifyUser(){
 			}, 
 			"json" );
 }
+
+function fn_deleteUser(){
+	var oSelUser = $("#sel_user option:selected");
+	var sSelId = oSelUser.val();
+	
+	if(sSelId == null || sSelId == ""){
+		alert("사용자를 선택하세요.");
+		return;	
+	}
+	
+	if( !confirm(oSelUser.text()+"님을 삭제 하시겠습니까?") ){
+		return;	
+	}
+	
+	$.post(
+			"deleteUser.do", 
+			$("form#frm_mod").serialize(), 
+			function(data){
+				alert(data.msg);
+				
+				if(data.errcode == 0){
+					window.location.reload(true);
+				}
+			}, 
+			"json" );	
+}
+
 </script>	
 </head>
 <body>
@@ -260,6 +291,7 @@ function fn_modifyUser(){
 	</form>
 	<div>
 	<input type="button" id="btn_mod" value="변경" style="width:70px; height:30px;">
+	<input type="button" id="btn_del" value="삭제" style="width:70px; height:30px;">
 	</div>
   </div>	<!-- div id="tabs-2" -->
 </div>

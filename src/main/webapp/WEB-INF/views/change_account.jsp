@@ -48,7 +48,6 @@ function fn_changePass(){
 	
 	$.post("changePass.do", $("form").serialize(),
 			function(data){
-				console.log(data);
 				alert(data.msg);
 				if(data.errcode == 0){
 					//이전 페이지로 이동

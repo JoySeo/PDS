@@ -45,7 +45,6 @@ public class RegDetailController {
 		model.addAttribute("flag",flag);
 		model.addAttribute("seq",seq);
 		model.addAttribute("auth",session.getAttribute("auth"));
-		System.out.println("model>>>>>"+model);
 		
 		//flag R: 상세보기, C: 신규등록, U: 수정
 		if( flag.equals("R") ){

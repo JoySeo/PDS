@@ -73,7 +73,6 @@ public class LoginController {
 			session.setAttribute("auth", strAuth);
 			model.addAttribute("auth", strAuth);
 			model.addAttribute("userNm", strUserNm);
-			System.out.println("login controller strAuth>>>>>>"+strAuth);
 			return "pds_list";
 		}
 	}

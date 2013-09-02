@@ -45,13 +45,17 @@ public class AdminService {
 		Map<String, String> hm = new HashMap<String, String>();
 		hm.put("userId", userId);
 		hm.put("sId", sId);
-		System.out.println("hm>>>>>>>"+hm);
 		sqlMapClientTemplate.update("admin.updatePass", hm);
 	}
 
 	public void modifyUser(User user) {
 		// TODO Auto-generated method stub
 		sqlMapClientTemplate.update("admin.updateUser", user);
+	}
+
+	public void deleteUser(User user) {
+		// TODO Auto-generated method stub
+		sqlMapClientTemplate.delete("admin.deleteUser", user);
 	}
 
 

@@ -67,4 +67,9 @@
 		WHERE ID=#ID#
 	</update>
 	
+	<delete id="admin.deleteUser" parameterClass="User">
+		DELETE PDS_USER
+		WHERE ID=#ID#
+	</delete>
+	
 </sqlMap>
